@@ -1,7 +1,6 @@
-import { Component, computed, signal, Signal } from '@angular/core';
+import { Component, computed, Input, signal, Signal } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
 
-const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
 
 @Component({
   selector: 'app-user',
@@ -10,17 +9,13 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
   styleUrl: './user.scss'
 })
 export class User {
-  slecetedUser = signal(DUMMY_USERS[randomIndex]);
-  imagePath = computed(() => {
-    return `assets/users/${this.slecetedUser().avatar}`;
-  });
+  @Input({required: true}) avatar!: string ;
+  @Input({required: true}) name!: string ;
 
-  // get imagePath(): string {
-  //   return `assets/users/${this.slecetedUser.avatar}`;
-  // }
+  get imagePath() {
+    return `assets/users/${this.avatar}`;
+  }
 
   onSelectUser(): void {
-    const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
-    this.slecetedUser.set(DUMMY_USERS[randomIndex]);
   }
 }
