@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Task } from "./task/task";
+import { NewTask } from "./new-task/new-task";
 
 const dummyTasks = [
   {
@@ -29,7 +30,7 @@ const dummyTasks = [
 
 @Component({
   selector: 'app-tasks',
-  imports: [Task],
+  imports: [Task, NewTask],
   templateUrl: './tasks.html',
   styleUrl: './tasks.scss'
 })
@@ -37,6 +38,8 @@ export class Tasks {
   @Input({required: true}) userId!: string;
   @Input({required: true}) name!: string;
 
+  isAddingtaks: boolean = false;
+  // Dummy data for tasks
   tasks = dummyTasks;
 
   get selectedUserTasks() {
@@ -45,5 +48,13 @@ export class Tasks {
 
   onHearTaskComplete(id: string) {
     this.tasks = this.tasks.filter(task => task.id !== id);
+  }
+
+  onStartAddTask(): void {
+    this.isAddingtaks = true;
+  }
+
+  onCancelAddTask(): void {
+    this.isAddingtaks = false;
   }
 }
