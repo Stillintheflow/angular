@@ -1,17 +1,11 @@
 import { Component, computed, Input, Output, EventEmitter } from '@angular/core';
+import { UserInterface } from './user.model';
 
 // type UserType = {
 //   id: string;
 //   avatar: string;
 //   name: string;
 // };
-
-interface UserType {
-  id: string;
-  avatar: string;
-  name: string;
-}
-
 
 @Component({
   selector: 'app-user',
@@ -20,7 +14,7 @@ interface UserType {
   styleUrl: './user.scss'
 })
 export class User {
-  @Input({required: true}) user!: UserType;
+  @Input({required: true}) user!: UserInterface;
   @Output() select = new EventEmitter<string>();
 
   // avatar = input.required<string>();

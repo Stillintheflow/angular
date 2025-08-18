@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-
+import { Component, Input } from '@angular/core';
+import { TaskInterface } from './task.model';
 @Component({
   selector: 'app-task',
   imports: [],
@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './task.scss'
 })
 export class Task {
-
+  @Input({required: true}) task!: TaskInterface;
 }
