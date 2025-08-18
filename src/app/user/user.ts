@@ -15,6 +15,7 @@ import { UserInterface } from './user.model';
 })
 export class User {
   @Input({required: true}) user!: UserInterface;
+  @Input({required: true}) selected!: boolean;
   @Output() select = new EventEmitter<string>();
 
   // avatar = input.required<string>();
