@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Task } from "./task/task";
 import { NewTask } from "./new-task/new-task";
+import { type NewTaskInterface } from './task/task.model';
 
 const dummyTasks = [
   {
@@ -55,6 +56,18 @@ export class Tasks {
   }
 
   onCancelAddTask(): void {
+    this.isAddingtaks = false;
+  }
+
+  onSubmitNewTask($event: NewTaskInterface) {
+    const newTask = {
+      id: `t${Math.random().toString()}`,
+      userId: this.userId,
+      title: $event.title,
+      summary: $event.summary,
+      dueDate: $event.date
+    };
+    this.tasks.push(newTask);
     this.isAddingtaks = false;
   }
 }
